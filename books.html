@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Books Sales and Ratings Analysis with SQL</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!-- <a href="index.html" class="logo">Projects</a> -->
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li class="active"><a href="books.html">Books Sales and Ratings Analysis with SQL</a></li>
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+						</ul>
+							<ul class="icons">
+	 						<li>Choose a language:</li>
+	 						<li><a href="books.html"><b>English</b></a></li>
+	 						<li> | </li>
+	 						<li><a href="books-es.html">Spanish</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<!-- <span class="date">April 25, 2017</span> -->
+									<h1>Books Sales and<br />
+									Ratings Analysis with SQL</h1>
+									<p>This section will walk you through the process of<br />
+								  	completing the project, as well as the tools that I used.<br /></p>
+								</header>
+								<div class="image main"><img src="images/books/imagen_dividida_books.jpg" alt="" /></div>
+								<h2>What is the project about?</h2>
+									<p>In this project I use SQL to analyze book sales performance data, ratings and classifications in order to give key recommendations to an aspiring author who wants to publish a new book and have a higher chance of success.</p>
+								<h3>Key components of the project</h3>
+								   <p>JOINS, CTEs, Window Functions, Aggregate Functions, Subqueries, String Functions, DDL, DML, Data Cleaning, Data Analysis, Insights, Recommendations.</p>
+								<h3>The dataset</h3>
+								   <p>For this project I worked on a dataset that contains key information about books sales and their ratings. Other columns include various aspects such as publishing year, author details, and genre classification.</p><br /><br />
+								<h2>Project Walkthrough</h2>
+									<p>This project is mainly divided into 4 parts:
+										<ol>
+											<li>Importing and loading the data</li>
+											<li>Data cleaning and standardization</li>
+											<li>Data analysis and exploration through queries</li>
+											<li>Final insights and recommendations for the client</li>
+										</ol>
+									</p><br />
+								<b>1. IMPORTING AND LOADING THE DATA</b>
+									<p>Data was in .csv format, so here are the steps that I followed in order to load the data into MySQL:</p>
+									<p>First, I created a database to import the data:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_database_adjusted.png" alt="" /></a>
+									<p>The dataset contains two tables with different information. I created the first table, giving a name and type to each column.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_first_table_adjusted.png" alt="" /></a>
+									<p>An empty table was created:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/empty_first_table_adjusted.png" alt="" /></a><br />
+									<p>I imported the data using LOAD DATA INFILE:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/load_data_first_table_adjusted.png" alt="" /></a><br />
+									<p>Now data has been imported successfully into the table:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/data_imported_first_table_adjusted.png" alt="" /></a>
+									<p>I created the second table to import data, following the same process:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_second_table_adjusted.png" alt="" /></a>
+									<p>Then I loaded the data using LOAD DATA INFILE:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/load_data_second_table_adjusted.png" alt="" /></a>
+									<p>Second table is ready:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/data_imported_second_table_adjusted.png" alt="" /></a>
+									<p>Now that the two tables have been imported, we can start cleaning and standardizing the data.</p><br />
+
+			
+								<b>2. DATA CLEANING AND STANDARDIZATION</b>
+									<p>It is common for data to have errors. Most of this dataset is usable; however, there are some errors I was able to spot and fix. This is the process that I followed:</p>
+								<p><u>Verifying same number of rows on both tables:</u></p>
+									<a class="image fit" style="text-align:center"><img src="images/books/count_rows_beginning_adjusted.png" alt="" /></a>
+									<p>Both tables show the same result, so we can imply there are no missing rows, and we can keep working on this dataset.</p>
+								<p><u>Finding duplicate values:</u></p>
+									<p>Now, we need to check for duplicate values. To achieve this, we join both tables and apply the ROW_NUMBER function, inside a CTE.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/duplicates_adjusted.png" alt="" /></a>
+									<p>After filtering we realize there are actually no duplicate values on this table.</p><br />
+								<p><u>Spaces at the beginning and at the end of book titles:</u></p>
+									<p>We filter the data using the LIKE operator and the % wildcard in order to spot results that have spaces at the beginning or at the end.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/like_adjusted.png" alt="" /></a>
+									<p>There are several results with this problem:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/results_with_spaces_adjusted.png" alt="" /></a>
+									<p>We edit those results with TRIM and an UPDATE statement:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/trim_adjusted.png" alt="" /></a><br />
+								<p><u>Errors in key fields</u></p>
+									<p>Genre column will be key for this analysis, so we need to take a look at it and make sure there is nothing wrong. Let’s look at the distinct values:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/distinct_adjusted.png" alt="" /></a>
+									<p>Looks like the fiction genre is repeated under two different names, so we need to change that:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/genres_repeated_adjusted.png" alt="" /></a>
+									<p>We update our data to combine both categories into one:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/like_combine_genres_adjusted.png" alt="" /></a>
+									<p>After this query, now we have the only 3 genres we need:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/only_3_genres_adjusted.png" alt="" /></a>
+									<p>Looking at the second table, I realize two publishers should be under the same name (HarperCollins Publishers and HarperCollins Publishing)</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/publishers_repeated_adjusted.png" alt="" /></a>
+									<p>We update the information to combine both results:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/update_publishers_adjusted.png" alt="" /></a>
+									<p>Now they are combined</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/publishers_combined_adjusted.png" alt="" /></a>
+								<p><u>Null and blank values</u></p>
+									<p>We need to make sure that our key columns have no null or blank values:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/looking_for_nulls_adjusted.png" alt="" /></a>
+									<p>After checking all of the fields, I realize there are some missing values in the book_name column. However, the columns that we will use for the analysis are the others, so this doesn’t affect our final calculations or conclusions; we are going to leave it just as it is. </p>
+									<p>All the other essential fields and columns have no missing information.</p><br />
+
+
+								<b>3. ANALYSIS AND EXPLORATION THROUGH QUERIES</b>
+									<p>Now that we have cleaned and standardized our data, we can work with it.</p>
+									<p>There are many key insights that can be obtained from this dataset and that will allow us to give recommendations to our client or stakeholders.</p>
+									<p>To achieve this, I wrote multiple queries with the use of several functions and statements. Here is a summary of what I did:</p>
+								<ul>
+								<li>Most popular genre</li>
+									<p>Getting the total number of books for each genre, using aggregate function COUNT.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/most_popular_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/most_popular_genre_results_adjusted.png" alt="" /></a>
+								<li>Minimum, maximum and average rating</li>
+									<p>Used MAX, MIN and AVG to analyze book ratings.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/min_max_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/min_max_results_adjusted.png" alt="" /></a>
+								<li>Ratings according to book prices</li>
+									<p>Joined both tables and used a case statement to understand if book prices have an influence on book ratings.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_prices_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_prices_results_adjusted.png" alt="" /></a>
+								<li>Ratings according to genre</li>
+									<p>Grouping by genre to see which genre has the best ratings.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_genre_results_adjusted.png" alt="" /></a>
+								<li>Average units sold by genre</li>
+									<p>Joined both tables and grouped by genre to see which books sell the best according to genre.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/average_units_sold_by_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/average_units_sold_by_genre_results_adjusted.png" alt="" /></a>
+								<li>Top 5 best-selling books across all genres</li>
+									<p>Here I decided to make a more complex query in order to combine IF statements, window functions and string functions.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_5_best_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_5_best_results_adjusted.png" alt="" /></a>
+								<li>Top rated books for each genre</li>
+									<p>Used the RANK window function to get the top-rated book for each genre.</p>
+									<p>The author may try to emulate any of these books if they want their book to achieve critical success.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_rated_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_rated_results_adjusted.png" alt="" /></a>
+								<li>Units sold by publisher</li>
+									<p>Some publishers sell more books than others. This may influence book selling success for the aspiring author.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/units_sold_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/units_sold_results_adjusted.png" alt="" /></a>
+								</ul><br /><br />
+
+
+								<b>4. FINAL INSIGHTS AND RECOMMENDATIONS FOR CLIENT</b>
+									<p>After the analysis, we can draw very useful conclusions, and I decided to give the following recommendations to our client and aspiring author:</p>
+								<ol>
+								<b><li>Most popular book genre is fiction (high competition)</li></b>
+									<p>Most consumed genre is fiction. However, this means that there is more competition if you want to achieve success with a book of this genre.</p>
+								<b><li>A new book should aim for a rating above 4</li></b>
+									<p>Average book rating is 4.007, so a new book should aim for a higher rating to stand out.</p>
+								<b><li>Expensive books have the best ratings</li></b>
+									<p>If the author thinks that their book is a quality book, they can consider selling it for a higher price.</p>
+								<b><li>Children books have the best ratings</li></b>
+									<p>It might be easier for a children book to stand out and to be well received by its readers, when it comes to its rating.</p>
+								<b><li>On average, a children book sells more units than fiction and non-fiction books</li></b>
+									<p>The possibility of a children book achieving commercial success is higher than other genres.</p>
+								<b><li>You should consider Amazon Digital Services if you want your book to achieve top sales performance</li></b>
+									<p>Among all publishers, Amazon Digital Services, Inc. is the clear winner when it comes to most units sold.</p>
+								</ol>
+
+							</section>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section> 
+						<section class="split contact">
+						<section style="text-align:center">
+							<section class="alt">
+								<h3>Location</h3>
+								<p style="text-align:center">Querétaro, México</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p style="text-align:center">(+52) 33-34-86-86-05</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p style="text-align:center">carlogerstein@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; 2025</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

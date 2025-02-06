@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>[SQL] Análisis de ventas y ratings de libros</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!-- <a href="index.html" class="logo">Projects</a> -->
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index-es.html">Proyectos</a></li>
+							<li class="active"><a href="books-es.html">[SQL] Análisis de ventas y ratings de libros</a></li>
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+						</ul>
+							<ul class="icons">
+	 						<li>Elige un idioma:</li>
+	 						<li><a href="books.html">Inglés</a></li>
+	 						<li> | </li>
+	 						<li><a href="books-es.html"><b>Español</b></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<!-- <span class="date">April 25, 2017</span> -->
+									<h1>[SQL] Análisis de ventas y ratings de libros</h1>
+								  	<p>Este artículo explica cómo se llevó a cabo el proyecto<br />
+								  	y habla acerca de las herramientas utilizadas.<br /></p>
+								</header>
+								<div class="image main"><img src="images/books/imagen_dividida_books.jpg" alt="" /></div>
+								<h2>¿De qué se trata el proyecto?</h2>
+									<p>En este proyecto utilizo SQL para analizar datos acerca de ventas de libros, sus calificaciones y sus géneros, con el objetivo de ofrecer recomendaciones relevantes para un autor que busca publicar un libro y aumentar las posibilidades de que este alcance el éxito comercial.</p>
+								<h3>Elementos del proyecto</h3>
+								   <p>JOINS, CTEs, Window Functions, Aggregate Functions, Subqueries, String Functions, DDL, DML, Limpieza de datos, Análisis de datos, Observaciones, Recomendaciones.</p>
+								<h3>Los datos</h3>
+								   <p>Para este proyecto utilicé una base de datos con información clave y relevante acerca de ventas de libros y sus calificaciones. Otras columnas incluyen diversos aspectos como el año de publicación, detalles acerca de los autores o el género de cada libro.</p><br /><br />
+								<h2>Cómo se llevó a cabo el proyecto</h2>
+								<p>El proyecto se divide en 4 partes principalmente:
+										<ol>
+											<li>Importar y cargar los datos</li>
+											<li>Limpieza y estandarización de los datos</li>
+											<li>Análisis y exploración de los datos utilizando queries</li>
+											<li>Recomendaciones y observaciones finales para el cliente</li>
+										</ol>
+									</p><br />
+								<b>1. IMPORTAR Y CARGAR LOS DATOS</b>
+									<p>Los datos se encontraban originalmente en formato .csv. A continuación describo el proceso que seguí para poder cargar los datos en MySQL y trabajar con las tablas:</p>
+									<p>Lo primero fue crear una base de datos para poder importar la información:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_database_adjusted.png" alt="" /></a>
+									<p>Esta base de datos contiene dos tablas, cada una con su propia información. Para trabajar con los datos, primero creé la primera tabla, dándole un nombre y un tipo a cada columna.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_first_table_adjusted.png" alt="" /></a>
+									<p>Se creó una tabla vacía:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/empty_first_table_adjusted.png" alt="" /></a><br />
+									<p>Importé los datos utilizando LOAD DATA INFILE:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/load_data_first_table_adjusted.png" alt="" /></a><br />
+									<p>Ahora la información se encuentra correctamente importada dentro de la tabla:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/data_imported_first_table_adjusted.png" alt="" /></a>
+									<p>Creé la segunda tabla para importar los datos. Para ello seguí el mismo proceso:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/create_second_table_adjusted.png" alt="" /></a>
+									<p>Posteriormente cargué los datos utilizando LOAD DATA INFILE:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/load_data_second_table_adjusted.png" alt="" /></a>
+									<p>La segunda tabla está lista:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/data_imported_second_table_adjusted.png" alt="" /></a>
+									<p>Ahora que tenemos ambas tablas con su respectiva información, podemos proceder a limpiar y estandarizar los datos.</p><br />
+
+
+								<b>2. LIMPIEZA Y ESTANDARIZACIÓN DE LOS DATOS</b>
+									<p>Muchas bases de datos suelen presentar errores en su información. En este caso, la mayor parte de la base de datos que utilicé no contenía errores, sin embargo, después de analizarla más a fondo, logré encontrar algunas inconsistencias que decidí corregir. Aquí está el proceso que seguí:</p>
+								<p><u>Verificar que ambas tablas contengan el mismo número de filas:</u></p>
+									<a class="image fit" style="text-align:center"><img src="images/books/count_rows_beginning_adjusted.png" alt="" /></a>
+									<p>Tras ejecutar ambas queries, el resultado que obtenemos es el mismo, esto nos permite concluir que ambas tablas tienen el mismo número de filas y que podremos continuar trabajando con esta base de datos.</p>
+								<p><u>Buscando valores duplicados:</u></p>
+									<p>Ahora es necesario identificar cualquier valor duplicado. Para ello, aplicamos un JOIN a ambas tablas y utilizamos la función ROW_NUMBER dentro de una CTE.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/duplicates_adjusted.png" alt="" /></a>
+									<p>Después de filtrar los datos con la query, no se muestra ningún resultado, lo que significa que nuestra base de datos no contiene valores duplicados.</p><br />
+								<p><u>Espacios al principio y al final de los títulos de los libros:</u></p>
+									<p>Utilizamos el operador LIKE y la wildcard % para filtrar los datos e identificar cualquier espacio al principio a al final de cada título.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/like_adjusted.png" alt="" /></a>
+									<p>Parece ser que existen varios resultados con este problema:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/results_with_spaces_adjusted.png" alt="" /></a>
+									<p>Editamos dichos resultados utilizando TRIM y UPDATE:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/trim_adjusted.png" alt="" /></a><br />
+								<p><u>Errores en campos importantes</u></p>
+									<p>La columna “genre” será una de las más útiles para nuestro análisis, por lo que resulta importante revisarla para descartar cualquier inconsistencia. Revisemos los valores con un DISTINCT:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/distinct_adjusted.png" alt="" /></a>
+									<p>Parece ser que el género “fiction” se repite 2 veces innecesariamente, pero con un nombre de categoría distinto. Es importante modificar esa parte:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/genres_repeated_adjusted.png" alt="" /></a>
+									<p>Usamos un UPDATE para combinar ambas categorías y conservar sólo una:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/like_combine_genres_adjusted.png" alt="" /></a>
+									<p>Tras ejecutar esta query, ahora sólo se muestran 3 categorías, justo como queríamos:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/only_3_genres_adjusted.png" alt="" /></a>
+									<p>Al revisar la segunda tabla, me doy cuenta de que dos elementos de la columna “publisher” deberían estar combinados también (HarperCollins Publishers and HarperCollins Publishing)</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/publishers_repeated_adjusted.png" alt="" /></a>
+									<p>Actualizamos los datos para combinar ambos resultados:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/update_publishers_adjusted.png" alt="" /></a>
+									<p>Se han combinado correctamente:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/publishers_combined_adjusted.png" alt="" /></a>
+								<p><u>Valores null y valores en blanco</u></p>
+									<p>Es necesario asegurarnos de que en nuestras columnas importantes no existen valores nulos o valores en blanco:</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/looking_for_nulls_adjusted.png" alt="" /></a>
+									<p>Después de revisar todos los campos, me doy cuenta de que hay algunos valores faltantes en la columna “book_name”. Sin embargo, las columnas que utilizaremos para nuestro análisis son otras, por lo que dichos valores faltantes no tendrán repercusión alguna sobre nuestros resultados y conclusiones finales. Por esta razón, dejaremos esos valores tal y como están. </p>
+									<p>Las demás columnas y campos cruciales no presentan información faltante.</p><br />
+
+
+								<b>3. ANÁLISIS Y EXPLORACIÓN A TRAVÉS DE QUERIES</b>
+									<p>Ahora que concluimos con la limpieza y estandarización de nuestros datos, podemos continuar trabajando con ellos.</p>
+									<p>Existen diversas conclusiones que pueden ser obtenidas a partir del análisis de estos datos y que nos permitirán ofrecer recomendaciones relevantes para nuestro cliente o cualquier parte interesada.</p>
+									<p>Para este fin, escribí y ejecuté varias queries utilizando distintas funciones y declaraciones. Aquí muestro un resumen de las funciones y consultas más importantes que empleé:</p>
+								<ul>
+								<li>Género literario más popular</li>
+									<p>Obtención del número total de libros para cada género, utilizando la aggregate function COUNT.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/most_popular_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/most_popular_genre_results_adjusted.png" alt="" /></a>
+								<li>Calificación máxima, mínima y promedio</li>
+									<p>Utilicé MAX, MIN y AVG para analizar las calificaciones de los libros.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/min_max_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/min_max_results_adjusted.png" alt="" /></a>
+								<li>Calificaciones de acuerdo al precio de los libros </li>
+									<p>Uní ambas tablas con un JOIN y utilicé un CASE statement para determinar si el precio de los libros tiene alguna influencia sobre su calificación.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_prices_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_prices_results_adjusted.png" alt="" /></a>
+								<li>Calificaciones de acuerdo al género literario</li>
+									<p>Agrupé según el género literario para determinar cuál género recibe las mejores calificaciones.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/ratings_according_to_genre_results_adjusted.png" alt="" /></a>
+								<li>Unidades vendidas en promedio para cada género literario</li>
+									<p>Utilicé un JOIN para unir ambas tablas y agruparlas por género, esto con la finalidad de averiguar cuántos libros logró vender cada género.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/average_units_sold_by_genre_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/average_units_sold_by_genre_results_adjusted.png" alt="" /></a>
+								<li>Los 5 libros con más ventas de cualquier categoría</li>
+									<p>En este punto decidí escribir una query un poco más compleja con la finalidad de combinar la utilización de IF, window functions y string functions.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_5_best_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_5_best_results_adjusted.png" alt="" /></a>
+								<li>Libros mejor calificados en cada género</li>
+									<p>Utilicé la window function RANK para obtener el libro con mejor calificación de cada género.</p>
+									<p>Esta estadística resulta bastante útil, pues nuestro cliente/autor, puede utilizar dichos libros como ejemplo o referencia para publicar el suyo y ser bien recibido por la crítica.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_rated_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/top_rated_results_adjusted.png" alt="" /></a>
+								<li>Unidades vendidas por cada editorial</li>
+									<p>Existen algunas editoriales que generan más ventas que otras. Esto podría influenciar el éxito comercial de alguien que busca publicar un libro.</p>
+									<a class="image fit" style="text-align:center"><img src="images/books/units_sold_query_adjusted.png" alt="" /></a>
+									<a class="image fit" style="text-align:center"><img src="images/books/units_sold_results_adjusted.png" alt="" /></a>
+								</ul><br /><br />
+
+
+								<b>4. RECOMENDACIONES Y OBSERVACIONES FINALES PARA EL CLIENTE</b>
+									<p>A partir del análisis descrito en este artículo fue posible obtener diversas conclusiones y ofrecer recomendaciones específicas para el caso de nuestro cliente y futuro autor:</p>
+								<ol>
+								<b><li>Ficción es el género más popular (mayor competencia)</li></b>
+									<p>El género que más se consume es el de ficción. Esto significa que la gente prefiere dicho género, sin embargo, también significa que existe una mayor competencia y será más difícil destacar entre tantas opciones.</p>
+								<b><li>Un nuevo libro debe aspirar a una calificación mayor a 4 estrellas</li></b>
+									<p>La calificación promedio de un libro es de 4.007, por lo que si se busca que el libro destaque entre los demás, debe tener una calificación mayor a la del promedio.</p>
+								<b><li>Los libros más caros también son los que tienen las mejores calificaciones</li></b>
+									<p>Si el autor considera que su libro es un buen libro, puede tomar la decisión de venderlo a un precio más alto y obtendrá buena respuesta del público.</p>
+								<b><li>Los libros infantiles tienen las mejores calificaciones</li></b>
+									<p>Es más fácil que un libro infantil sea bien recibido por el público y obtenga una calificación positiva por parte de los lectores.</p>
+								<b><li>En promedio, un libro infantil vende más unidades que un libro de ficción o de no-ficción</li></b>
+									<p>La posibilidad de que tu libro alcance un número alto de ventas, se incrementa cuando se trata de un libro infantil.</p>
+								<b><li>El autor debería considerar Amazon Digital Services si lo que busca es alcanzar el éxito en ventas</li></b>
+									<p>Amazon Digital Services, Inc. presenta un número de ventas mucho mayor que el de las demás editoriales.</p>
+								</ol>
+							</section>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section> 
+						<section class="split contact">
+						<section style="text-align:center">
+							<section class="alt">
+								<h3>Location</h3>
+								<p style="text-align:center">Querétaro, México</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p style="text-align:center">(+52) 33-34-86-86-05</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p style="text-align:center">carlogerstein@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; 2025</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

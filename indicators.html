@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Indicators of Heart Disease in Excel</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!-- <a href="index.html" class="logo">Projects</a> -->
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li class="active"><a href="indicators.html">Indicators of Heart Disease in Excel</a></li>
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+						</ul>
+							<ul class="icons">
+	 						<li>Choose a language:</li>
+	 						<li><a href="indicators.html"><b>English</b></a></li>
+	 						<li> | </li>
+	 						<li><a href="indicators-es.html">Spanish</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<!-- <span class="date">April 25, 2017</span> -->
+									<h1>Indicators of Heart<br />
+									Disease in Excel</h1>
+									<p>This section will walk you through the process of<br />
+								  	completing the project, as well as the tools that I used.<br /></p>
+								</header>
+								<div class="image main"><img src="images/imagen_dividida.jpg" alt="" /></div>
+								<h2>What is the project about?</h2>
+									<p>In this project I used several methods to analyze, clean and visualize a dataset that contains information about a heart disease study. After that, I built and worked on a dashboard that shows the most relevant results of the study.</p>
+								<h3>How was the data obtained?</h3>
+								   <p>It was obtained from a dataset found on the data science platform "Kaggle".
+								   This particular dataset shows the information of several studies conducted by 5 different hospitals and medical centers, including the Hungarian Institute of Cardiology, and the V.A. Medical Center, Long Beach and Cleveland Clinic Foundation.</p><br /><br />
+								<h2>Project Walkthrough</h2>
+								<b>The dataset</b>
+									<p>I started by choosing a dataset that I could work with. I decided to choose one with real and accurate data, but I also wanted it to have some small errors or formatting issues that I could detect and improve. That is why this heart disease dataset was very useful for the task. I also find this particular topic to be quite interesting.</p>
+								<b>Preparation</b>
+									<p>There are a few things that I normally like to do before I start working on a file. One of them is deciding the file format I will use. In this case, the original file was .csv and I decided to convert it to .xlsx, to avoid any potential issues. Another thing I did as preparation was creating a second Excel file, to preserve the original one without changes, just in case I need it.</p>
+								<b>Data Cleaning</b>
+									<p>Some of the things that I did as part of the data cleaning process:</p>
+										<ul>
+											<li>Removing duplicates.</li>
+											<li>Adding filters and analyzing the data to spot any errors.</li>
+											<li>Renaming headers to make them more clear and easier to recognize.</li>
+
+											<a class="image fit" style="text-align:center"><i >Before</i><img src="images/headers_before.png" alt="" /></a>
+											<a class="image fit" style="text-align:center"><i >After</i><img src="images/headers_after.png" alt="" /></a><br />
+											<li>Replacing the data in some columns such as "Sex" and "Chest Pain Type" to add more information and to make them easier to understand.</li>
+											<a class="image fit" style="text-align:center"><img src="images/columns_before_and_after.jpg" alt="" /></a><br />
+											<li>Using nested Ifs to group ages by range, instead of keeping them individually. This will make the data more usable for visualization purposes.</li>
+											<a class="image fit" style="text-align:center"><img src="images/nested_if.png" alt="" /></a>
+											<a class="image fit" style="text-align:center"><i >Result</i><img src="images/age_brackets_adjusted.jpg" alt="" /></a><br />
+											<li>Some formatting to make it look nicer.</li>
+											<a class="image fit" style="text-align:center"><img src="images/columns_formatting_adjusted.jpg" alt="" /></a><br />
+										</ul>
+								<b>Pivot tables</b>
+									<p>I created three pivot tables. The first one shows the prevalence of heart disease by age group. The second one shows the different types of chest pain and the amount of people affected by it. An the third one shows the prevalence of heart disease by gender.</p>
+									<p>Then from each pivot table I created a chart. Here is one example:</p>
+									<a class="image fit" style="text-align:center"><img src="images/pivot_table_and_chart.png" alt="" /></a><br />
+
+								<b>Dashboard</b>
+									<p>In order to have a well-organized and friendly visual representation of the data, I built a dashboard. This allows users to quickly understand the information, as well as charts and key metrics.</p>
+									<p>I added two slicers, for the user to be able to filter multiple criteria at the same time (in this case, resting ECG and fasting blood sugar results).</p>
+									<p>Finally, I took some time to make some visual adjustments to the dashboard, focusing on details such as colors, design and other elements that can make the dashboard more visually appealing and more user-friendly.</p>
+									<p>This was the final result:</p>
+									<a class="image fit" style="text-align:center"><img src="images/dashboard.png" alt="" /></a>
+									<p>If you would like to take a look at the file, it is available on my <a href="https://github.com/CarloRg23/DA_Projects/tree/main/(Excel)%20Indicators%20of%20Heart%20Disease">Github profile.</a></p>
+
+							</section>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section> 
+						<section class="split contact">
+						<section style="text-align:center">
+							<section class="alt">
+								<h3>Location</h3>
+								<p style="text-align:center">Querétaro, México</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p style="text-align:center">(+52) 33-34-86-86-05</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p style="text-align:center">carlogerstein@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; 2025</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

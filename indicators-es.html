@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Indicadores de enfermedad cardíaca en Excel</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!-- <a href="index.html" class="logo">Projects</a> -->
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index-es.html">Proyectos</a></li>
+							<li class="active"><a href="indicators-es.html">Indicadores de enfermedad cardíaca en Excel</a></li>
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+						</ul>
+							<ul class="icons">
+	 						<li>Elige un idioma:</li>
+	 						<li><a href="indicators.html">Inglés</a></li>
+	 						<li> | </li>
+	 						<li><a href="indicators-es.html"><b>Español</b></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<!-- <span class="date">April 25, 2017</span> -->
+									<h1>Indicadores de enfermedad<br />
+									cardíaca en Excel</h1>
+								  	<p>Este artículo explica cómo se llevó a cabo el proyecto<br />
+								  	y habla acerca de las herramientas utilizadas.<br /></p>
+								</header>
+								<div class="image main"><img src="images/imagen_dividida.jpg" alt="" /></div>
+								<h2>¿De qué se trata el proyecto?</h2>
+									<p>En este proyecto utilicé distintos métodos y herramientas para analizar, limpiar y visualizar la información de una base de datos relacionada con un estudio acerca de enfermedades cardíacas. Posteriormente, elaboré y diseñé un "dashboard" para mostrar los resultados y la información más importante obtenida a partir del estudio.</p>
+								<h3>¿De dónde se obtuvieron los datos?</h3>
+								   <p>Toda la información se obtuvo a partir de una base de datos encontrada en el conocido sitio web de análisis de datos "Kaggle".
+								   Este set de datos muestra la información de diversos estudios realizados por 5 centros médicos y hospitales, entre los que destacan el Hungarian Institute of Cardiology y el V.A. Medical Center, Long Beach and Cleveland Clinic Foundation.
+								   </p><br /><br />
+								<h2>Cómo se llevó a cabo el proyecto</h2>
+								<b>Los datos</b>
+									<p>Lo primero fue elegir una base de datos que pudiera funcionar para el proyecto. Quería utilizar un set de datos que, a pesar de contar con información real y precisa, tuviera algunos errores pequeños o formatos distintos que yo pudiera corregir o modificar. Decidí utilizar la base de datos de este estudio cardiológico, pues cumplía con esos requisitos. De igual manera, se trata de un tema que me parece interesante y de un estudio que permite obtener diversas conclusiones.</p>
+								<b>Preparación</b>
+									<p>Antes de iniciar me gusta preparar algunas cosas para facilitar el trabajo posterior. La primera es elegir con qué formato de archivos trabajaré. En este caso, elegí convertir el archivo original .csv a un .xlsx, pues me permite evitar algunos problemas de compatibilidad y me facilita tratar lo datos. Algo más que me gusta hacer es crear una copia del archivo original y trabajar con dicha copia. De esta manera puedo volver al archivo inicial en cualquier momento, en caso de que sea necesario.</p>
+								<b>Limpieza de los datos</b>
+									<p>Aquí se muestran algunas de las actividades que realicé como parte del proceso de limpieza de datos:</p>
+										<ul>
+											<li>Quitar valores duplicados.</li>
+											<li>Añadir filtros y analizar los datos para encontrar cualquier error.</li>
+											<li>Cambiar el nombre de los encabezados, para hacerlos más fáciles de entender y más representativos de cada columna.</li>
+											<a class="image fit" style="text-align:center"><i >Antes</i><img src="images/headers_before.png" alt="" /></a>
+											<a class="image fit" style="text-align:center"><i >Después</i><img src="images/headers_after.png" alt="" /></a><br />
+											<li>Reemplazar la información de algunas columnas como lo son "Sex" y "Chest Pain Type", para mostrar una versión más clara y detallada de cada celda.</li>
+											<a class="image fit" style="text-align:center"><img src="images/columns_before_and_after.jpg" alt="" /></a><br />
+											<li>Utilizar Ifs anidados, con la finalidad de separar las edades en varios grupos y optimizar su uso posterior en gráficas y visualizaciones.</li>
+											<a class="image fit" style="text-align:center"><img src="images/nested_if.png" alt="" /></a>
+											<a class="image fit" style="text-align:center"><i >Resultado</i><img src="images/age_brackets_adjusted.jpg" alt="" /></a><br />
+											<li>Ajustes de formato para hacer el contenido más agradable visualmente.</li>
+											<a class="image fit" style="text-align:center"><img src="images/columns_formatting_adjusted.jpg" alt="" /></a><br />
+										</ul>
+								<b>Tablas dinámicas</b>
+									<p>En esta parte creé y utilicé 3 tablas dinámicas. En la primera se muestra cómo varía la enfermedad cardíaca según el grupo de edad. La segunda tabla dinámica muestra el tipo de dolor de pecho de cada uno de los pacientes. En la tercera tabla se muestra cómo varía la enfermedad cardíaca de acuerdo al sexo del paciente.</p>
+									<p>A partir de cada tabla dinámica se creó un gráfico. Aquí un ejemplo:</p>
+									<a class="image fit" style="text-align:center"><img src="images/pivot_table_and_chart.png" alt="" /></a><br />
+
+								<b>Dashboard</b>
+									<p>Elaboré un "dashboard" con la finalidad de poder mostrar la información de una manera más agradable y organizada. Esto permite a los usuarios interpretar los datos, gráficas y estadísticas más fácilmente.</p>
+									<p>Agregué dos secciones de <u>segmentación de datos</u>, esto para permitir al usuario filtrar la información de manera más interactiva. En este caso, se utilizaron filtros para los valores de ECG en reposo (resting ECG) y niveles de glucosa en ayunas (fasting blood sugar results).</p>
+									<p>Por último, me dediqué un tiempo a mejorar la parte estética del dashboard, enfocándome en detalles como el diseño, la distribución y los colores. Esto ayuda a hacer el panel más agradable y atractivo para el usuario.</p>
+									<p>Este fue el resultado final:</p>
+									<a class="image fit" style="text-align:center"><img src="images/dashboard.png" alt="" /></a>
+									<p>Si quisieran echar un vistazo al proyecto, este está disponible en mi <a href="https://github.com/CarloRg23/DA_Projects/tree/main/(Excel)%20Indicators%20of%20Heart%20Disease">perfil de Github</a>.</p>
+							</section>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section> 
+						<section class="split contact">
+						<section style="text-align:center">
+							<section class="alt">
+								<h3>Location</h3>
+								<p style="text-align:center">Querétaro, México</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p style="text-align:center">(+52) 33-34-86-86-05</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p style="text-align:center">carlogerstein@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; 2025</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
